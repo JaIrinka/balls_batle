@@ -8,10 +8,33 @@ root.title("PRINTING")
 
 max_x = 1000
 mav_y = 600
-size_hex = 30
-field_colors = ["gold", "yellow", "goldenrod", "peru", "red", "orangered"]
+size_hex = 20
+field_colors = [
+    "gold",
+    "yellow",
+    "goldenrod",
+    "peru",
+    "red",
+    "orangered",
+    "brown",
+    "chocolate",
+    "coral",
+    "crimson",
+    "darkgoldenrod",
+    "darkorange",
+    "darkred",
+    "darksalmon",
+    "firebrick",
+    "indianred",
+    "lightcoral",
+    "lightpink",
+    "lightsalmon",
+    "tomato"
+]
 
-canvas = Canvas(root, width=max_x, height=mav_y, bg='white')  ##Размер листа и его цвет, на котором будут графические изображения
+canvas = Canvas(
+    root, width=max_x, height=mav_y, bg="white"
+)  ##Размер листа и его цвет, на котором будут графические изображения
 canvas.pack()
 
 hexagons = hex_field(canvas, size_hex, max_x, mav_y)
@@ -49,17 +72,21 @@ ball = canvas.create_oval(900, 500, 1000, 600, fill="green", width=5)
 
 # canvas.create_oval(100, 100, 400, 300, fill="red", outline="black")
 
+
 def move():
     canvas.move(ball, -1, -1)
     canvas.after(10, move)
-    
+
+
 move()
+
 
 def colors():
     rand_hexagon = random.randint(0, len(hexagons) - 1)
     rand_color = random.randint(0, len(field_colors) - 1)
     canvas.itemconfigure(hexagons[rand_hexagon], fill=field_colors[rand_color])
     canvas.after(10, colors)
+
 
 colors()
 

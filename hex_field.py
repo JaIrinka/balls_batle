@@ -9,7 +9,7 @@ def hex_field(canvas, size, max_x, mav_y):
         for p in hexagon:
             points.extend(p.get_coords())
         hexagons.append(canvas.create_polygon(
-            *points, outline="blue", fill="orange", width=1
+            *points, fill="orange", width=0 #, outline="black"
         ))
     return hexagons
 
@@ -19,16 +19,16 @@ def get_center(size, max_x, mav_y):
     r = 0
     while top_offset <= mav_y:
         if not r:
-            left_offset = size
+            left_offset = sqrt(3)/2 * size
             r = 1
         else:
             left_offset = 0
             r = 0
         while left_offset <= max_x:
             center = Point(left_offset, top_offset)
-            left_offset += size*2
+            left_offset += sqrt(3) * size
             yield center
-        top_offset += sqrt(3) * size
+        top_offset += sqrt(3)/4 * size + size 
 
 
 def make_hexagon(center, size):
